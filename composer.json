@@ -1,0 +1,28 @@
+{
+    "name": "atico/translator-symfony-demo-onedrive-to-xliff",
+    "license": "MIT",
+    "type": "project",
+    "description": "Spreadsheet Translator. Symfony Demo Application. Takes a Microsoft One Drive spreadhseet file and creates a translation file per locale in Xliff format",
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        },
+        "classmap": [
+            "app/AppKernel.php"
+        ]
+    },
+    "require": {
+
+        "php": ">=5.5.9",
+        "symfony/symfony": "^3.1",
+
+        "atico/spreadsheet-translator-core": "^1.0",
+        "atico/spreadsheet-translator-symfony-bundle": "^1.0",
+        "atico/spreadsheet-translator-provider-onedrive": "^1.0",
+        "atico/spreadsheet-translator-reader-xlsx": "^1.0",
+        "atico/spreadsheet-translator-exporter-xliff": "^1.0"
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
