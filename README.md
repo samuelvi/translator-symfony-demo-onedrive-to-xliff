@@ -59,9 +59,9 @@ The generated files will be:
   └───Resources
      │
      └──translations
-         │  demo_common.es_ES.php   
-         │  demo_common.en_GB.php
-         │  demo_common.it_IT.php
+         │  demo_common.es_ES.xliff   
+         │  demo_common.en_GB.xliff
+         │  demo_common.it_IT.xliff
 
 ```      
                               
