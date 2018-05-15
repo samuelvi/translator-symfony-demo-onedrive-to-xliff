@@ -24,8 +24,14 @@
     "bin-dir": "bin"
   },
   "scripts": {
+    "post-create-project-cmd": [
+      "bash ./bin/create_translations_folder.sh"
+    ],
     "post-update-cmd": [
-      "mkdir -p app/Resources/translations"
+      "bash ./bin/create_translations_folder.sh"
+    ],
+    "post-install-cmd": [
+      "bash ./bin/create_translations_folder.sh"
     ]
   }
 }
