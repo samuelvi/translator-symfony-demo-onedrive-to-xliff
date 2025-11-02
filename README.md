@@ -1,128 +1,84 @@
-Spreadsheet Translator Symfony Demo Application - Use Case
-======================================================================================
+Spreadsheet Translator Symfony Demo Application
+================================================
 
-Introduction
-------------
+Symfony demo application that takes a Microsoft OneDrive spreadsheet and generates translation files in XLIFF format.
 
-Lightweight Symfony Demo Application for the Spreadsheet Translator functionallity.
- The demo brings a command that takes a Microsoft One Drive spreadhseet file and creates a translation file per locale in Xliff format.
+## Requirements
 
+- PHP >= 8.4
+- Symfony 7.0
+- Docker & Docker Compose (recommended)
 
-Installation
-------------
+## Installation
 
+```bash
 composer create-project atico/translator-symfony-demo-onedrive-to-xliff
-
-This will install the demo application into your computer
-
-The source demo spreadsheet file is located at https://onedrive.live.com/embed?resid=AF6B7F4DC4426D56!114&authkey=%21AOntrGclPCi6zdA&em=2&cid=af6b7f4dc4426d56
-
-
-
-
-Instructions for sharing the One Drive file in readonly mode
-------------------------------------------------------------
-
-Open your spreadsheet file in One Drive.
-
-Go to Open => Share 
-
-Click on the embed link
-
-Click on the generate button
-
-A screen with a Code for Insert|Javascript will appear
-
-The given textarea will contain an iframe element, copy the value for AUTHKEY
-
-From the address bar copy the values for RESID and CID
-
-
-Manually build the following url replacing the corresponding values:
-
-https://onedrive.live.com/embed?resid=RESID&authkey=AUTHKEY&em=2&cid=CID
-
-
-
-Running the demo
----------
-
-type in you terminal: bin/console atico:demo:translator --sheet-name=common
-
-This command will generate the translation files that will be stored into app/translations folder.
-
-The generated files will be:
-
-```
-  app
-  |
-  └───Resources
-     │
-     └──translations
-         │  demo_common.es_ES.xliff   
-         │  demo_common.en_GB.xliff
-         │  demo_common.it_IT.xliff
-
-```      
-                              
-demo_common.it_IT.yml will contain:
-
-```php
-  <?php
-  return array (
-    'homepage_title' => 'Traduttore di fogli di calcolo',
-    'homepage_subtitle' => 'Traduttore per pagine Web con fogli di calcolo',
-  );
 ```
 
-Related
-------------
+Copy `.env` and configure your OneDrive spreadsheet URL:
 
-Symfony Bundle:
-- <a href="https://github.com/samuelvi/spreadsheet-translator-symfony-bundle">Symfony Bundle</a>
-
-Symfony Demos:
-
-- <a href="https://github.com/samuelvi/translator-symfony-demo-local-file-to-php">Symfony Demo. Takes a local file and creates translation files per locale in php format</a>
-- <a href="https://github.com/samuelvi/translator-symfony-demo-google-to-yml">Symfony Demo. Takes a google drive spreadsheet and creates translation files per locale in yml format</a>
-- <a href="https://github.com/samuelvi/translator-symfony-demo-onedrive-to-xliff">Symfony Demo. Takes a microsoft one drive spreadsheet and creates translation files per locale in xliff format</a>
-
-
-
-Notes
------
-
-
-composer.json will include the following Spreadsheet Translator dependencies:
-```
-  "atico/spreadsheet-translator-core": "^1.0",
-  "atico/spreadsheet-translator-symfony-bundle": "^1.0",
-  "atico/spreadsheet-translator-provider-onedrive": "^1.0",
-  "atico/spreadsheet-translator-reader-xlsx": "^1.0",
-  "atico/spreadsheet-translator-exporter-xliff": "^1.0",
+```bash
+cp .env.example .env
 ```
 
+Demo spreadsheet: https://onedrive.live.com/embed?resid=F52C4DBF73226B55%%212071&authkey=%%21ANaIXSe9EB_Vywo&em=2&em=2&cid=F52C4DBF73226B55%%212071
+
+Notice that this file can not be opened via web browser but with the atico:demo:translator command.
+
+## Running with Docker
+
+```bash
+make build          # Build Docker images
+make up             # Start services
+make composer-install
+make console atico:demo:translator --sheet-name=common
+```
+
+## Running Locally
+
+```bash
+bin/console atico:demo:translator --sheet-name=common
+```
+
+## Output
+
+Translation files are generated in `translations/`:
+
+```
+translations/
+  ├── demo_common.es_ES.xliff
+  ├── demo_common.en_GB.xliff
+  └── demo_common.it_IT.xliff
+```
+
+## OneDrive File Sharing
+
+1. Open spreadsheet in OneDrive
+2. Share → Embed → Generate code
+3. Extract AUTHKEY from iframe code
+4. Copy RESID and CID from URL
+5. Build URL: `https://onedrive.live.com/embed?resid=RESID&authkey=AUTHKEY&em=2&cid=CID`
+
+Note: Escape `%` characters in URL values by doubling them (`%%`)
+
+## Related Projects
+
+- [Symfony Bundle](https://github.com/samuelvi/spreadsheet-translator-symfony-bundle)
+- [Local File to PHP Demo](https://github.com/samuelvi/translator-symfony-demo-local-file-to-php)
+- [Google Drive to YML Demo](https://github.com/samuelvi/translator-symfony-demo-google-drive-provider-yml-exporter)
 
 
-Requirements
-------------
 
-  * PHP >=5.5.9
-  * Symfony ~2.3|~3.0
+## Dependencies
 
-
-Contributing
-------------
-
-We welcome contributions to this project, including pull requests and issues (and discussions on existing issues).
-
-If you'd like to contribute code but aren't sure what, the issues list is a good place to start. If you're a first-time code contributor, you may find Github's guide to <a href="https://guides.github.com/activities/forking/">forking projects</a> helpful.
-
-All contributors (whether contributing code, involved in issue discussions, or involved in any other way) must abide by our code of conduct.
+- `samuelvi/spreadsheet-translator-core`: ^8.4
+- `samuelvi/spreadsheet-translator-symfony-bundle`: ^8.0
+- `samuelvi/spreadsheet-translator-provider-onedrive`: ^8.0
+- `samuelvi/spreadsheet-translator-reader-xlsx`: ^8.1
+- `samuelvi/spreadsheet-translator-exporter-xliff`: ^8.0
 
 
-License
--------
+## License
 
-Spreadsheet Translator Symfony Bundle is licensed under the MIT License. See the LICENSE file for full details.
+Licensed under the MIT License. See LICENSE file for details.
 

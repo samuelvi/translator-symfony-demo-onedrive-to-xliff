@@ -1,0 +1,15 @@
+atico_spreadsheet_translator:
+    frontend:
+        provider:
+            name: 'one_drive'
+            # 'https://onedrive.live.com/edit?resid=F52C4DBF73226B55!2071&ithint=file,xlsx&wdo=2&cid=F52C4DBF73226B55!2071'
+            source_resource: 'https://onedrive.live.com/embed?resid=F52C4DBF73226B55%%212071&authkey=%%21ANaIXSe9EB_Vywo&em=2&em=2&cid=F52C4DBF73226B55%%212071'
+        exporter:
+            format: 'xliff'
+            prefix: 'demo_'
+            destination_folder: '%kernel.project_dir%/translations'
+        shared:
+            temp_local_source_file: '%kernel.project_dir%/var/cache/downloaded_resource.xls'
+            default_locale: 'en'
+            name_separator: '#'
+
