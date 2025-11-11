@@ -23,9 +23,7 @@ final class TranslatorCommandTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->spreadsheetTranslator = $this->getMockBuilder(SpreadsheetTranslator::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->spreadsheetTranslator = $this->createMock(SpreadsheetTranslator::class);
         $this->translator = $this->getMockBuilder(TranslatorInterface::class)
             ->onlyMethods(['trans', 'getLocale'])
             ->addMethods(['setFallbackLocales'])
