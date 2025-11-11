@@ -3,3 +3,5 @@ var/
 translations/*
 !translations/.gitignore
 .claude
+.idea
+.phpunit.cache
